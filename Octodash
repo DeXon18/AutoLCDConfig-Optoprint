@@ -1,5 +1,3 @@
-Here are all the commands from the video so you can copy and paste them.
-
 Get Raspbian up to date
 sudo apt update
 sudo apt upgrade
