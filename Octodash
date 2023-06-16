@@ -23,7 +23,7 @@ chmod +x LCD5-show
 sudo ./LCD5-show
 
 # Si deseas invertir la pantalla, ejecuta:
-# sudo ./LCD5-show 180
+sudo ./LCD5-show 180
 
 # Actualizar el archivo de configuración de arranque (boot/config.txt)
 sudo bash -c 'cat << EOF >> /boot/config.txt
