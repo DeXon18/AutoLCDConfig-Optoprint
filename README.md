@@ -10,7 +10,7 @@ Este repositorio contiene un script en bash que automatiza el proceso de configu
 ## Instrucciones de uso
 
 1. Clona este repositorio en tu Raspberry Pi:
-git clone https://github.com/TuUsuario/Configuracion-LCD-RaspberryPi.git
+git clone https://github.com/DeXon18/Configuracion-LCD-RaspberryPi.git
 
 2. Cambia al directorio del repositorio:
 cd Configuracion-LCD-RaspberryPi
@@ -18,9 +18,9 @@ cd Configuracion-LCD-RaspberryPi
 3. Ejecuta el script de configuración:
 ./setup_lcd.sh
 
-El script ejecutará automáticamente los comandos necesarios para actualizar el sistema, descargar los controladores de la pantalla LCD y realizar las configuraciones correspondientes en el archivo de configuración de arranque (config.txt). Al finalizar, la Raspberry Pi se reiniciará.
+4.El script ejecutará automáticamente los comandos necesarios para actualizar el sistema, descargar los controladores de la pantalla LCD y realizar las configuraciones correspondientes en el archivo de configuración de arranque (config.txt). Al finalizar, la Raspberry Pi se reiniciará.
 
-4. ¡Disfruta de tu pantalla LCD configurada!
+5. ¡Disfruta de tu pantalla LCD configurada!
 
 ## Notas adicionales
 
