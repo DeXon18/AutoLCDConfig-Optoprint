@@ -1,86 +1,41 @@
-Get Raspbian up to date
+#!/bin/bash
+
+# Actualizar Raspbian
 sudo apt update
-sudo apt upgrade
+sudo apt upgrade -y
 
-If it complains about bad packages run:    
-sudo apt install -f
+# Solucionar problemas de paquetes incorrectos
+sudo apt install -f -y
 
-Download waveshare LCD drivers:
+# Descargar los controladores de la pantalla Waveshare LCD
 git clone https://github.com/waveshare/LCD-show.git
 
-Change directory permissions:
+# Cambiar los permisos del directorio
 chmod -R 755 LCD-show
 
-Change directory:
+# Cambiar al directorio
 cd LCD-show/
 
-Change file permissions:
+# Cambiar los permisos del archivo
 chmod +x LCD5-show
 
-Run the script for the screen you have, I am using the 3.5”
+# Ejecutar el script correspondiente a tu pantalla (por ejemplo, para una pantalla de 3.5")
 sudo ./LCD5-show
 
-Run the driver again with a 180 if you want to flip the screen:
-sudo ./LCD5-show 180
+# Si deseas invertir la pantalla, ejecuta:
+# sudo ./LCD5-show 180
 
-Update boot/config.txt
-sudo nano /boot/config.txt
+# Actualizar el archivo de configuración de arranque (boot/config.txt)
+sudo bash -c 'cat << EOF >> /boot/config.txt
 
-# uncomment to force a specific HDMI mode (this will force VGA)
-#hdmi_group=1
-#hdmi_mode=1
-#Code added 
- hdmi_group=2
- hdmi_mode=87
- hdmi_cvt 800 480 60 6 0 0 0
- hdmi_drive=1
- display_rotate=2
- dtoverlay=ads7846,cs=1,penirq=25,penirq_pull=2,speed=50000,keep_vref_on=0,swapxy=0,pmax=255,xohms=150,xmin=200,xmax=3900,ymin=200,ymax=3900
+# Descomenta y agrega el código siguiente:
+hdmi_group=2
+hdmi_mode=87
+hdmi_cvt 800 480 60 6 0 0 0
+hdmi_drive=1
+display_rotate=2
+dtoverlay=ads7846,cs=1,penirq=25,penirq_pull=2,speed=50000,keep_vref_on=0,swapxy=0,pmax=255,xohms=150,xmin=200,xmax=3900,ymin=200,ymax=3900
+EOF'
 
-Reboot:   
+# Reiniciar la Raspberry Pi
 sudo reboot
-
-Install X11 packages, remember these will conflict if you have the desktop installed:
-sudo apt-get install libgtk-3-0 xserver-xorg xinit x11-xserver-utils
-
-Reboot:
-sudo reboot
-
-Install dev packages:
-sudo apt-get install git build-essential xorg-dev xutils-dev x11proto-dri2-dev
-
-Reboot:
-sudo reboot
-
-Install a few more dev packages:
-sudo apt-get install libltdl-dev libtool automake libdrm-dev
-
-Reboot:
-sudo reboot
-
-Install the xf86 video driver:
-git clone https://github.com/ssvb/xf86-video-fbturbo.git
-
-Change into the downloaded directory:
-cd xf86-video-fbturbo/
-
-Run auto reconfig for new driver:
-autoreconf -vi
-
-Run the configure script with a prefix:   
-./configure --prefix=/usr
-
-Run make:
-make
-
-Do make install:
-sudo make install
-
-Copy new conf file to X11 location:
-sudo cp xorg.conf /etc/X11/xorg.conf
-
-Reboot:
-sudo reboot
-
-Install OctoDash:
-bash <(wget -qO- https://github.com/UnchartedBull/OctoDash/raw/main/scripts/install.sh)
